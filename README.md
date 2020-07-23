@@ -257,7 +257,7 @@ A series of webservices that allow clients to interact with cisco network device
         - https://flask.palletsprojects.com/en/1.1.x
         - https://blog.miguelgrinberg.com/index
         - https://www.packtpub.com
-        - https://udemy.com
+        - https://udemy.com - DAVID BOMABAL - 
        - CISCO
          - https://www.cisco.com
          - https://developer.cisco.com
@@ -293,8 +293,25 @@ A series of webservices that allow clients to interact with cisco network device
       - Deploy app with Waitress: 
         - Source: https://flask.palletsprojects.com/en/1.1.x/tutorial/deploy/
         - Source: https://docs.pylonsproject.org/projects/waitress/en/stable/
-        
-      
+  
+  ** A big thank you to all those who helped me in the development process **:
+       Alexandre Santos - (Especialista de informática, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
+       Pedro Vapi - (Chefe de divisão, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
+       Anthony Herbert - https://prettyprinted.com/
+       python/networking community:
+         - https://www.python.org/
+         - https://realpython.com/
+         - https://www.geeksforgeeks.org/
+         - https://www.udemy.com/user/davidbombal/
+         - https://www.youtube.com/c/HankPreston/playlists
+         - https://developer.cisco.com/
+         - https://www.tutorialspoint.com/python/index.htm
+         - https://www.w3schools.com/python/
+         - https://www.freecodecamp.org/
+         - https://www.youtube.com/user/thenewboston
+         - https://pythonprogramming.net/
+         - https://www.thepythoncode.com/
+         
       
    
 
