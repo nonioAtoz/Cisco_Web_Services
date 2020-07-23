@@ -49,13 +49,13 @@ A series of webservices that allow clients to interact with cisco network device
       **Note:** We have used Python 3.7.6. but probably the app can run on python 3.5.
     
     
-    ####1.1 Manual install of Python Packages     
+   1.1 Manual install of Python Packages     
       - [x] pip install flask
       - [x] pip install flask-swagger-ui
       - [x] pip install netmiko
       
       
-    ####1.2 We can install via pip using the requirements.txt file instead of manual installment
+   1.2 We can install via pip using the requirements.txt file instead of manual installment
       - [x] pip install -r requirements.txt
       
  2. Install NTC-templates for netmiko. It uses TEXT-FSM for parsing the output of the Network devices CLI
