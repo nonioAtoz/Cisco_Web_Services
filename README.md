@@ -51,7 +51,7 @@ A series of webservices that allow clients to interact with cisco network device
       - [x] pip install flask
       - [x] pip install flask-swagger-ui
       - [x] pip install netmiko
-     ####1.2 We can install via pip using the requirements.txt file instead of manual installment
+    ####1.2 We can install via pip using the requirements.txt file instead of manual installment
       - [x] pip install -r requirements.txt
       
  2. Install NTC-templates for netmiko. It uses TEXT-FSM for parsing the output of the Network devices CLI
