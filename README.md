@@ -50,10 +50,9 @@ A series of webservices that allow clients to interact with cisco network device
     
     
    1.1 Manual install of Python Packages     
-      - [x] pip install flask
-      - [x] pip install flask-swagger-ui
-      - [x] pip install netmiko
-      
+     - [x] pip install flask
+     - [x] pip install flask-swagger-ui
+     - [x] pip install netmiko
       
    1.2 We can install via pip using the requirements.txt file instead of manual installment
       - [x] pip install -r requirements.txt
