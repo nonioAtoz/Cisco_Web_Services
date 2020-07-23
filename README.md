@@ -175,6 +175,44 @@ A series of webservices that allow clients to interact with cisco network device
         </p>
 
  6. **Application Structure: files and folders**
+       
+       
+              ├── config.py
+              ├── deployCentos
+              │   ├── history_commands
+              │   ├── install.netowrkautomate
+              │   ├── nginx.conf
+              │   └── nginx.conf_OLD
+              ├── LOGS
+              │   ├── NetworkAutomate.log
+              │   └── NETWORKAUTOMATE_JSONLOG.json
+              ├── NETWORKAUTOMATE.py
+              ├── ntc-templates
+              ├── oldOne.md
+              ├── postman_Collection
+              │   └── NEXT_APPROUCH.postman_collection.json
+              ├── put_env_vars.bat
+              ├── put_env_vars.sh
+              ├── PythonClients
+              │   ├── service_add_command_raw.py
+              │   └── service_add_list_off_commands.py
+              ├── readme.md
+              ├── requirements.txt
+              ├── setup.py
+              ├── the_app
+              │   ├── connect.py
+              │   ├── LOGS
+              │   ├── manage_logs.py
+              │   ├── operations.py
+              │   ├── request_data.py
+              │   ├── routes.py
+              │   ├── static
+              │   │   └── documentation.yaml
+              │   ├── teste_backup_operations.py
+              │   ├── __init__.py
+              ├── unitary_tests
+
+       
        #### Files and Folders rapid guide(check each file for details):
        ##### /PythonClients
           some files with python clients (to consume our webservices) 
