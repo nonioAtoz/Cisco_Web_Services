@@ -340,15 +340,16 @@ A series of webservices that allow clients to interact with cisco network device
   
   
   
-  ## A big thank you to all those who helped me in the development process:
+  ## A big thank you to all those who helped me in the development process on this application and on my Python learning path:
     - Alexandre Santos - (Especialista de informática, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
     - Pedro Vapi - (Chefe de divisão, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
-    - Anthony Herbert - programer@ https://prettyprinted.com/
-    - Python/Networking community:
+    - Anthony Herbert - python programmer and consultant @ https://prettyprinted.com/
+    - João Moura - Lead Software Developer at GVC Group : https://github.com/jpsmoura
+    - Python and Networking Community
       - https://www.python.org/
       - https://realpython.com/
       - https://www.geeksforgeeks.org/
-      - https://www.udemy.com/user/davidbombal/
+      - https://www.udemy.com/user/davidbombal/  
       - https://www.youtube.com/c/HankPreston/playlists
       - https://developer.cisco.com/
       - https://www.tutorialspoint.com/python/index.htm
@@ -358,9 +359,11 @@ A series of webservices that allow clients to interact with cisco network device
       - https://pythonprogramming.net/
       - https://www.thepythoncode.com/
       - https://www.youtube.com/user/schafer5
-      - https://blog.miguelgrinberg.com/index
+      - https://blog.miguelgrinberg.com/index  
       - https://www.dailycodingproblem.com/
       - https://binarysearch.io/
+      - https://www.pluralsight.com/
+      - https://www.oreilly.com/
          
       
    
