@@ -295,11 +295,12 @@ A series of webservices that allow clients to interact with cisco network device
         - Source: https://docs.pylonsproject.org/projects/waitress/en/stable/
   
   
+  
   ## A big thank you to all those who helped me in the development process:
     - Alexandre Santos - (Especialista de informática, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
     - Pedro Vapi - (Chefe de divisão, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
-    -  Anthony Herbert - programer https://prettyprinted.com/
-    - python/networking community:
+    - Anthony Herbert - programer https://prettyprinted.com/
+    - Python/Networking community:
       - https://www.python.org/
       - https://realpython.com/
       - https://www.geeksforgeeks.org/
@@ -312,6 +313,7 @@ A series of webservices that allow clients to interact with cisco network device
       - https://www.youtube.com/user/thenewboston
       - https://pythonprogramming.net/
       - https://www.thepythoncode.com/
+      - https://www.youtube.com/user/schafer5
          
       
    
