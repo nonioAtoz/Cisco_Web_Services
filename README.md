@@ -25,6 +25,9 @@ A series of webservices that allow clients to interact with cisco network device
         We can't configure or interact with Cisco network devices that have a '#' character present in the hostname. We may try, but it could cause unexpected errors.
         
         ######## Check application documentation for details ##################
+ 
+ Check  documentation at https://mydomian.tests.com 
+          
         
 3. Application deployment: Installation and first-time-setup **(SUMMARY)**
     - We need to have installed on our server, **Python 3.7.6. Version**<br>
