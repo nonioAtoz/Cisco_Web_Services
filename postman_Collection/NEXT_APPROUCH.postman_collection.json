@@ -1,0 +1,617 @@
+{
+	"info": {
+		"_postman_id": "0dfb6635-909e-4f9b-918c-2d11d4e80fff",
+		"name": "NEXT_APPROUCH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Testing_the_basics_json_data",
+			"item": [
+				{
+					"name": "request1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\" :\"192.168.2.100\",\r\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"],\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\" :\"192.168.2.260\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request4",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\" :\"192.168.1.254\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/{{webservice}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"{{webservice}}"
+							]
+						},
+						"description": "THIS REQUEST IS NOT WELL HANDLED\r\nTHE ISSUE HERE IS THAT WE ARE PASSING TO THE REQUEST a :\r\ndouble\"/\"\r\n\r\n127.0.0.1//add_command_raw_not_privileged\r\n\r\nFLASK see this:\r\n'RAW_URI': '//add_command_raw_not_privileged', \r\nbut it not raises a page not found, HTTP error 404\r\n\r\nfor flask :\r\n'//add_command_raw_not_privileged' is equal to '/add_command_raw_not_privileged'\r\n\r\nin our function check_webservice_data()\r\nwhen we call the URI key for checking which web service is running , we cannot cacth the URI with //\r\n\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "requestSpecific",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"command_to_send\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestSpecificOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"command_to_send\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request7Sprecific2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"command_to_send\": [\"teste\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request8",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"type\": 2,\r\n\t\"command_to_send\": [\"teste\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request9",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"type\":\"telnet\",\r\n\t\"port\": \"1\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request10",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"type\":\"telnet\",\r\n\t\"port\": 0\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request11",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"ip\": \"192.168.1.254\",\r\n\t\"type\":\"telnet\",\r\n\t\"port\": 22,\r\n\t\"command_to_send\": \"show version\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}{{webservice}}",
+							"host": [
+								"{{server}}{{webservice}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "{{server}}//add_list_of_commands",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.100\",\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_list_of_commands",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_list_of_commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//add_command_raw",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\":\"192.168.2.100\",\n\t\"command_to_send\" : \"sh version\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_command_raw",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_command_raw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}/save_runing_conf",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.1\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/save_running_configurations",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"save_running_configurations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//add_command_raw_not_privileged",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"command_to_send\": \"show run\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_command_raw_not_privileged",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_command_raw_not_privileged"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//add_list_of_commands",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_list_of_commands",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_list_of_commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//add_command_raw_not_privileged",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.100\",\n\t\"command_to_send\": \"show version\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_command_raw_not_privileged",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_command_raw_not_privileged"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//add_list_of_commands_1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.100\",\n\t\"commands_list\": [\"vlan 101\",\"name Office\",\"exit\",\"interface vlan 101\", \"ip address 192.168.101.254 255.255.255.0\", \"description vlan to Office\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_list_of_commands",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_list_of_commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//configure_multiple_devices1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/configure_multiple_devices",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"configure_multiple_devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "page not found - get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "method not allowed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "page not found  POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"commands_list\": [\"vlan 99\", \"name testesers\", \"do show ip interface brief\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/path_that_not_exist",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"path_that_not_exist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{server}}//add_command_raw_not_privileged",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"command_to_send\": \"show version\",\n\t\"type\": \"telnet\"\n}\n\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/add_command_raw_not_privileged//https:www.google.pt",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"add_command_raw_not_privileged",
+						"",
+						"https:www.google.pt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "// 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ip\" :\"192.168.2.254\",\n\t\"command_to_send\": \"show version\",\n\t\"type\": \"telnet\"\n}\n\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}//add_command_raw_not_privileged",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"",
+						"add_command_raw_not_privileged"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
