@@ -300,7 +300,7 @@ A series of webservices that allow clients to interact with cisco network device
         - https://flask.palletsprojects.com/en/1.1.x
         - https://blog.miguelgrinberg.com/index
         - https://www.packtpub.com
-        - https://udemy.com - DAVID BOMABAL - 
+        - https://udemy.com - DAVID BOMBAL - 
        - CISCO
          - https://www.cisco.com
          - https://developer.cisco.com
