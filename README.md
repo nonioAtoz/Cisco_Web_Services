@@ -339,13 +339,10 @@ A series of webservices that allow clients to interact with cisco network device
   
   
   
-  ## A big THANK YOU!,  to ALL of YOU that supported me, in the development process of this application, and in the path of learning Python, Networking and Systems Administration tasks:
-    - Alexandre Santos - (Especialista de informática, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
-    - Pedro Vapi - (Chefe de divisão, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
-    - Anthony Herbert - python programmer and consultant @ https://prettyprinted.com/
-    - João Moura - Lead Software Developer at GVC Group : https://github.com/jpsmoura
-    - ISEC Community https://isec.pt
-    - Python and Networking Community
+  ## A big THANK YOU!,  to the Python and Networking Community
+
+      - ISEC Community https://isec.pt
+      - https://prettyprinted.com
       - https://blog.miguelgrinberg.com/index
       - https://www.python.org/
       - https://realpython.com/
