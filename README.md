@@ -340,7 +340,7 @@ A series of webservices that allow clients to interact with cisco network device
   
   
   
-  ## A big THANK YOU ALL to those who helped me, in the development process of this application, and in the path of learning Python, Networking and Systems Administration tasks:
+  ## A big THANK YOU to ALL of you that helped me, in the development process of this application, and in the path of learning Python, Networking and Systems Administration tasks:
     - Alexandre Santos - (Especialista de informática, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
     - Pedro Vapi - (Chefe de divisão, SGSIIC – Serviço de Gestão de Sistemas e Infraestruturas de Informação e Comunicação da Universidade de Coimbra)
     - Anthony Herbert - python programmer and consultant @ https://prettyprinted.com/
