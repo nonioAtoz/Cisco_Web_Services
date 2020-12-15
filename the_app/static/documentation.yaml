@@ -1,0 +1,2005 @@
+swagger: "2.0"
+info:
+  description: "A series of webservices that allow clients to interact with cisco network devices.<br>
+  We can configure devices or get information of various aspects of device configuration.
+  <p><b>All webservices expect a Json data object: </b>
+  A <b>dictionary</b> with some keys and values </p>
+  <p> - The value for the key <b>'ip'</b>, is the ip address of the network device that the API will try to interact.
+  <p> - The key <b>'type'</b> is optional. It represents the type of connection that client wants to force the API
+  to use when connecting with network device.<br> <b>'type'</b> value could be <b>'ssh' or 'telnet'</b>.<br>If you omit
+  <b>'type'</b>, The API will try both connections when interacting with the network devices.
+  <p> - The key  <b>'port'</b> is also optional. Its value represents the network device port that are listening for connections.
+  <br>If you omit <b>'port'</b>, the API will
+   use 22 for default ssh connection, and 23 for default telnet.</p>
+  <p><b><h2> For detailed information on what we are expecting for each service, check webservices definitions, below</h2></b> </p>
+  <p> <b>Note:</b> We will return Json data objects</p>
+  <p style='color:red'> <b> WARNING:<b/></P><p>We can't configure or interact with Cisco network devices that have a '#' character present in the hostname. We may try, but it could cause unexpected errors.</p>
+  "
+  
+  version: "Version-2020706-Development"
+  title: NETWORKAUTOMATE
+  contact:
+    email: "nm.10000.testes@gmail.com"
+  
+# Paths supported by the server application
+schemes:
+  - http
+ 
+tags:
+  - name: Configure Devices
+    description: "List of active services to Configure Cisco Network Devices."
+  - name: Old Ones
+    description: "These services were developed in earlier version of the app. Not in use,
+    although we can obtain the same results using the services that are active in Configure Devices"
+paths:
+  /add_interface_description:
+    post:
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service configure a interface description on a (CISCO IOS) network device"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.
+              <p>ip- network device ip<br>
+              Interface - network device interface <br>
+              description - description <br>
+              type - ssh or telnet (optional)  <br>
+              port - port number (optional) </p>"
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  interface:
+                    type: string
+                  description:
+                    type: string
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - interface
+                  - description
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "object"
+                    properties:
+                      interface:
+                        type: string
+                      link_status:
+                        type: string
+                      protocol_status:
+                        type: string
+                      hardware_status:
+                        type: string
+                      address:
+                        type: string
+                      bia:
+                        type: string
+                      description:
+                        type: string
+                      ip_address:
+                        type: string
+                      mtu:
+                        type: string
+                      dupplex:
+                        type: string
+                      speed:
+                        type: string
+                      bandwidth:
+                        type: string
+                      delay:
+                        type: string
+                      encapsultion:
+                        type: string
+                      last_input:
+                        type: string
+                      last_output:
+                        type: string
+                      last_output_hang:
+                        type: string
+                      queue_strategy:
+                        type: string
+                      input_rate:
+                        type: string
+                      output_rate:
+                        type: string
+                      input_packets:
+                        type: string
+                      output_packets:
+                        type: string
+                      input_errors:
+                        type: string
+                      output_erros:
+                        type: string 
+    
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  /add_trunk_to_port:
+    post:
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service configure a port interface to trunk mode.<br>Optionaly
+      , We can configure the native vlan, pruning, and allowed vlans for the port.
+      <br>We will return interface information and a list of commands existing in the interface configuration" 
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip (mandatory)<br> Interface - network device interface ( mandatory) <br> native - vlan number id for native vlan (optional) <br>allowed - a list with one or more vlan ids to configure as allowed vlans for the interface (optional) <br> prunning - a list with one or more vlan ids to configure as prunned vlans for the interface (optional)<br>type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  interface:
+                    type: string
+                  native:
+                    type: integer
+                  allowed:
+                        type: "array"
+                        items:
+                          type: integer
+                  pruning:
+                        type: "array"
+                        items:
+                          type: integer
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - interface
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "object"
+                    properties:
+                      interface:
+                        type: string
+                      link_status:
+                        type: string
+                      protocol_status:
+                        type: string
+                      hardware_status:
+                        type: string
+                      address:
+                        type: string
+                      bia:
+                        type: string
+                      description:
+                        type: string
+                      ip_address:
+                        type: string
+                      mtu:
+                        type: string
+                      dupplex:
+                        type: string
+                      speed:
+                        type: string
+                      bandwidth:
+                        type: string
+                      delay:
+                        type: string
+                      encapsultion:
+                        type: string
+                      last_input:
+                        type: string
+                      last_output:
+                        type: string
+                      last_output_hang:
+                        type: string
+                      queue_strategy:
+                        type: string
+                      input_rate:
+                        type: string
+                      output_rate:
+                        type: string
+                      input_packets:
+                        type: string
+                      output_packets:
+                        type: string
+                      input_errors:
+                        type: string
+                      output_erros:
+                        type: string 
+                  commands_existing_on_interface FastEthernet(*number):
+                        type: "array"
+                        items:
+                          type: string    
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  
+  /add_hostname:
+    post:
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service configure a hostname on a (CISCO IOS) network
+      device. We are expecting a name. The name should not have any empty space
+      or a cardinal character. Also, and because cisco hostname vary from device
+      to device we decide to limit to our name ( 20 characteres). if you need a
+      hostname bigger than these try to manual configure the device or contact
+      your network admin.<B>  Warning - WE DONT SAVE THE CONFIGURATION. YOU HAVE
+      TO DO A MANUAL SAVE OR USE A SERVICE FOR THAT. ( WE HAVE ONE, THAT CAN DO 
+      IT) "
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip<br> name - hostname <br> type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  name:
+                    type: string
+                required:
+                  - ip
+                  - name
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "object"
+                    properties:
+                      hostname:
+                        type: string
+                      
+    
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  /show_version:
+    post:
+      operationId: "show_version"
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service is equivalent of a show version command on a cli.<br> We will output:<br>&emsp; 1. Dictionary with operation status<br>&emsp; 2. Dictionary with strutured data ( result of output of a show command on cli) <br> <b>&emsp; ( It could be helpfull for quickly search for information like :</b><br>&emsp;&emsp;&emsp;ios version<br>&emsp;&emsp;&emsp;hostname<br>&emsp;&emsp;&emsp;running image<br>&emsp;&emsp;&emsp;up-time<br>&emsp;&emsp;&emsp;model number<br>&emsp;&emsp;&emsp;system serial number )<br>&emsp; 3. Complete show version, like the one you see on a network device.<p><b> Check output definitions for more information. </b><br>  "
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip<br>type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip:
+                    type: string
+                    format: ipv4
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "object"
+                    properties:
+                      version:
+                        type: string
+                      rommon:
+                        type: string
+                      hostname:
+                        type: string
+                      uptime:
+                        type: string
+                      reload_reason:
+                        type: string
+                      running_image:
+                        type: string
+                      hardware:
+                        type: "array"
+                        items:
+                          type: string
+                      serial:
+                        type: string
+                      config_register:
+                        type: string
+                      mac:
+                        type: "array"
+                        items:
+                            type: string
+                  result_unstructered_data:
+                    type: "string"
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  /show_running_config:
+    post:
+      operationId: "show_running_config"
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service is equivalent of a show run command on a cli.<br>
+      We will output:<br>&emsp;
+      A Dictionary with operation status and a result of the operation <br>"
+
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.
+              <p>ip- network device ip<br>type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip:
+                    type: string
+                    format: ipv4
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  NETWORK AUTOMATE RESPONSE:
+                    type: "object"
+                    properties:
+
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:
+                    type: "string"
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  /show_vlans:
+    post:
+      operationId: "show_vlans"
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service is equivalent of a show vlan command on a cli.<br> We will output:<br>&emsp; 1. Dictionary with operation status<br>&emsp; 2. Dictionary with strutured data ( result of output of a show vlan on cli) <br> <b>&emsp; ( It could be helpfull for quickly search for information like :</b><br>&emsp;&emsp;&emsp;vlan id<br>&emsp;&emsp;&emsp;vlan name<br>&emsp;&emsp;&emsp;status<br>&emsp; 3. Complete show vlan , like the one you see on a network device cli. ( its a string with the lines separated by a \"\\n\"<p><b> Check output definitions for more information. </b><br>  "
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip<br>type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip:
+                    type: string
+                    format: ipv4
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "object"
+                    properties:
+                      vlan_id:
+                        type: string
+                      name:
+                        type: string
+                      status:
+                        type: string
+                      interfaces:
+                        type: "array"
+                        items:
+                          type: "object"
+                  result_unstructered_data:
+                    type: "string"
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.          
+  /show_interfaces:
+    post:
+      operationId: "show_interfaces"
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service is equivalent of a show interfaces command on 
+      a cli.<br> We will output:<br>&emsp; 1. Dictionary with operation 
+      status<br>&emsp; 2. Dictionary with strutured data ( result of output of 
+      a show interfaces on cli) <br> <b>&emsp; ( It could be helpfull for 
+      quickly search for information like :</b><br>&emsp;&emsp;&emsp;protocol 
+      status<br>&emsp;&emsp;&emsp;ip address<br>&emsp;&emsp;&emsp;bia
+      <br>&emsp;&emsp;&emsp;mac_address<br>&emsp;&emsp;&emsp;description
+      <br>&emsp;&emsp;&emsp;Etc<br>&emsp; 3. Complete show interfaces, like the 
+      one you see on a network device cli. ( its a string with the lines
+      separated by a \"\\n\"<br>&emsp; 4. Dictionary with the configuration lines belonging to interface like the ones you see when permorm a show run 
+      command.<p><b> Check output definitions for more information. "
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip<br>type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip:
+                    type: string
+                    format: ipv4
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        interface:
+                          type: string
+                        link_status:
+                          type: string
+                        protocol_status:
+                          type: string
+                        hardware_status:
+                          type: string
+                        address:
+                          type: string
+                        bia:
+                          type: string
+                        description:
+                          type: string
+                        ip_address:
+                          type: string
+                        mtu:
+                          type: string
+                        dupplex:
+                          type: string
+                        speed:
+                          type: string
+                        bandwidth:
+                          type: string
+                        delay:
+                          type: string
+                        encapsultion:
+                          type: string
+                        last_input:
+                          type: string
+                        last_output:
+                          type: string
+                        last_output_hang:
+                          type: string
+                        queue_strategy:
+                          type: string
+                        input_rate:
+                          type: string
+                        output_rate:
+                          type: string
+                        input_packets:
+                          type: string
+                        output_packets:
+                          type: string
+                        input_errors:
+                          type: string
+                        output_erros:
+                          type: string
+                  result_unstructered_data:
+                    type: "string"
+                  configuration_lines_on_interfaces:  
+                    type: "object"
+                    properties:
+                      interfaces_names:
+                        type: "array"
+                        items:
+                          type: "string"
+                  
+                     
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  /add_vlan:
+    post:
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service add a new vlan  (CISCO IOS) to  network device
+      <br> "
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model 
+              for details.<br> WARNING - Some are mandatory <p>
+              ip- network device ip<br> vlan_id - number id for vlan <br> 
+              vlan_name - name for vlan (optional) <br>type - ssh or telnet 
+              (optional) <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  vlan_id:
+                    type: string
+                  vlan_name:
+                    type: string
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - vlan_id
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.
+  /shut_down_port:
+    post:
+      tags:
+        - "Old Ones"
+      summary: ""
+      description: "This service put a port of (CISCO IOS) network device on a state -
+      <b>administratively down or up (shutdown a port/put a port up)"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details.<br><b> WARNING: Some are mandatory.</b><p>ip- network device ip<br> Interface - network device interface <br> mode - activate or deactivate <br>type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  interface:
+                    type: string
+                  mode:
+                    type: string
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - interface
+                  - mode
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  OPERATION_INFO:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                  result:  
+                    type: "object"
+                    properties:
+                      interface:
+                        type: string
+                      link_status:
+                        type: string
+                      protocol_status:
+                        type: string
+                      hardware_status:
+                        type: string
+                      address:
+                        type: string
+                      bia:
+                        type: string
+                      description:
+                        type: string
+                      ip_address:
+                        type: string
+                      mtu:
+                        type: string
+                      dupplex:
+                        type: string
+                      speed:
+                        type: string
+                      bandwidth:
+                        type: string
+                      delay:
+                        type: string
+                      encapsultion:
+                        type: string
+                      last_input:
+                        type: string
+                      last_output:
+                        type: string
+                      last_output_hang:
+                        type: string
+                      queue_strategy:
+                        type: string
+                      input_rate:
+                        type: string
+                      output_rate:
+                        type: string
+                      input_packets:
+                        type: string
+                      output_packets:
+                        type: string
+                      input_errors:
+                        type: string
+                      output_erros:
+                        type: string 
+    
+          '437':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: integer
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: integer
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+          '501':
+            description: Unexpected error.          
+  /save_running_configurations:
+    post:
+      tags:
+        - "Configure Devices"
+      summary: ""
+      description: "This service will save running configurations on network 
+      device.<br>(equivalent to - <b> copy-running-config start-config</b> IOS 
+      CLI command) "
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. 
+                            Check model for details. WARNING Some are mandatory.<p>ip- network device ip (mandatory)<br> type - ssh or telnet 
+                            (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  type:
+                    type: string
+                  port:
+                    type: integer
+                    format: int32
+                required:
+                  - ip
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  NETWORK AUTOMATE RESPONSE:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      RESULT_OUTPUT_CLI:  
+                            type: string
+                
+                     
+          '400':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                        
+          '404':
+            description: NOT FOUND
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '500':
+            description: INTERNAL SERVER ERROR
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+  /add_list_of_commands:
+    post:
+      tags:
+        - "Configure Devices"
+      summary: ""
+      description: "This service send  a list of commands to a network device
+      and it will return the cli output.<br> Consider that the device prompt is in <b>GLOBAL CONFIGURATION COMMANDS</b> </br>
+        <b>Since we are in config mode, a commands_list to send to device should use the 'end' or 'exit' command.</b><br> 
+        <b>e.g.</b>  Interaction with a CISCO CLI <br>
+        switchTelnet(config)#vlan 77<br>
+        switchTelnet(config-vlan)#name Office<br>
+        switchTelnet(config-vlan)#exit<br>
+        switchTelnet(config)#<br>
+        switchTelnet(config)#interface vlan 77<br>
+        switchTelnet(config-if)#ip address 192.168.77.254 255.255.255.0<br>
+        switchTelnet(config-if)#desc<br>
+        switchTelnet(config-if)#description Vlan to Office<br>
+        switchTelnet(config-if)#end<br>
+        switchTelnet#<br>
+        <p><b>To Reproduce this setup in 'commands_list' do: </b> ['vlan 77','name Office','exit','interface vlan 77', 'ip address 192.168.77.254 255.255.255.0', 'description vlan to Office']</p>
+        <p style='color:red'>Note:</p> The use of <b>'exit'</b> in the commands list.<br>
+        If we use <b>'end'</b> command prompt will exit Configuration mode 
+        "
+        
+        
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip (mandatory)<br> commands_list - list of commands to send
+              to device( mandatory) <br> type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  commands_list:
+                        type: "array"
+                        items:
+                          type: string
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - commands_list
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  NETWORK AUTOMATE RESPONSE:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      RESULT_OUTPUT_CLI:  
+                            type: string
+                
+                     
+          '400':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                        
+          '404':
+            description: NOT FOUND
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '500':
+            description: INTERNAL SERVER ERROR
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+  /add_command_raw:
+    post:
+      tags:
+        - "Configure Devices"
+      summary: ""
+      description: "This service sends a raw command to a cisco device.<b> (PRIVILEGED EXEC COMMANDS)</b><br>
+      Whenever possible, we will try to output Structured and Unstructured data 
+      captured from de Network Device CLI.<br> e.g. <b> we can send for example a show run"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip (mandatory)<br> command_to_send - command to send
+              to device( mandatory) <br> type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  command_to_send:
+                        type: "array"
+                        items:
+                          type: string
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - command_to_send
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  NETWORK AUTOMATE RESPONSE:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: "string"
+                      MESSAGE:
+                        type: "string"
+                      STRUCTURED_RESULT:  
+                            type: "array"
+                            items:
+                              type: "object"
+                      UNSTRUCTURED_RESULT:  
+                            type: "string"
+                
+                     
+          '400':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: "string"
+                      ERROR:
+                        type: "string"
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                        
+          '404':
+            description: NOT FOUND
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '500':
+            description: INTERNAL SERVER ERROR
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+  /add_command_raw_not_privileged:
+    post:
+      tags:
+        - "Configure Devices"
+      summary: ""
+      description: "This service sends a raw command to a cisco device.<b> (USER EXEC COMMANDS)</b></br>
+      Whenever possible, it we will try to output Structured and Unstructured data 
+      captured from de Network Device CLI.<br> For example we can perform a show version or debug, etc.<br>
+      <p style='color:red'> warning:</p>
+      <b> e.g USER EXEC COMMANDS will not allow the command:</b> : show run<br>
+      On this case since we are not authorized to run 'show run' on the device the output will be something like e.g. <b>(^% Invalid input detected at '^' marker.<br></b> Check your Cisco Device Manual to validate what commands could be sent"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+            - in: "body"
+              name: "data"
+              description: "WE ARE EXPECTING A DICTIONARY WITH DATA. Check model for details. WARNING: Some are mandatory.<p>ip- network device ip (mandatory)<br> command_to_send - command to send
+              to device( mandatory) <br> type - ssh or telnet (optional)  <br> port - port number (optinal)  "
+              required: true
+              schema:
+                type: "object"
+                properties:
+                  ip: 
+                    type: string
+                    format: ipv4
+                  command_to_send:
+                        type: "array"
+                        items:
+                          type: string
+                  type:
+                    type: string
+                  port: 
+                   type: integer
+                   format: int32
+                required:
+                  - ip
+                  - command_to_send
+      responses:
+          '200':
+            description: OK
+            schema:
+                type: "object"
+                properties:
+                  NETWORK AUTOMATE RESPONSE:
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: "string"
+                      MESSAGE:
+                        type: "string"
+                      STRUCTURED_RESULT:  
+                            type: "array"
+                            items:
+                              type: "object"
+                      UNSTRUCTURED_RESULT:  
+                            type: "string"
+                
+                     
+          '400':
+            description: Bad request. Check details
+            schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: "string"
+                      ERROR:
+                        type: "string"
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                        
+          '404':
+            description: NOT FOUND
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '500':
+            description: INTERNAL SERVER ERROR
+            schema:
+                type: "object"
+                properties:
+                    code:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+          '512':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+          '513':
+             description: Some problem occur while interacting with device.
+             schema:
+                type: "object"
+                properties:
+                  NETWORK_AUTOMATE_RESPONSE:  
+                    type: "object"
+                    properties:
+                      STATUS:
+                        type: string
+                      ERROR:
+                        type: string
+                      TYPE:
+                        type: string
+                      MESSAGE:
+                        type: string
+                      SSH-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string
+                      TELNET-FAILURE:
+                        type: "object"
+                        properties:
+                          STATUS:
+                            type: string
+                          ERROR:
+                            type: string
+                          TYPE:
+                            type: string
+                          MESSAGE:
+                            type: string                          
+                            
+  
