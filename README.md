@@ -57,8 +57,8 @@ A series of webservices that allow clients to interact with cisco network device
       - [x] pip install -r requirements.txt
       
  2. Install NTC-templates for netmiko. It uses TEXT-FSM for parsing the output of the Network devices CLI
-     - [x] We dont need to install/download the ntc templates folder. The folder is already in place. We just need
-        to five to the O.S. a path to the folder. 
+     - [x] We dont need to install/download the ntc templates folder. The folder is already in place(NOTE: please unzip). We just need
+        to give the O.S. a path to the folder. ()
         ```
             export NET_TEXTFSM=/path/to/ntc-templates/templates/** 
         ```
