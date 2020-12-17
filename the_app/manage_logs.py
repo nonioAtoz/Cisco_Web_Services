@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- encoding: utf-8 -*
 # Author: Nuno Moura
-# Coordenação: Alexandre Santos, Pedro Vapi
+
 
 
 import os
