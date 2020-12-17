@@ -80,7 +80,7 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     # GROUP OF EMAILS THAT WILL RECEIVE ERROR MESSAGES WHEN APPLICATION FAILS. and Email is configured on server
     #ADMINS = ["your_admin_email_account@domain.com"]  # Add, Delete or Edit the list of emails.
-    ADMINS = ["nuno.moura10000@outlook.pt"]  # Add, Delete or Edit the list of emails. We do not test we the list Empty.
+    ADMINS = ["teste@gmail.pt"]  # Add, Delete or Edit the list of emails. We do not test we the list Empty.
 
     # CISCO DEVICE CREDENCIALS:
     DEVICE_USERNAME = "cisco"
