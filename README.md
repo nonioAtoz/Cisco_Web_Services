@@ -356,8 +356,7 @@ A series of webservices that allow clients to interact with cisco network device
       - https://www.youtube.com/user/thenewboston
       - https://pythonprogramming.net/
       - https://www.thepythoncode.com/
-      - https://www.youtube.com/user/schafer5
-      - https://blog.miguelgrinberg.com/index  
+      - https://www.youtube.com/user/schafer5 
       - https://www.dailycodingproblem.com/
       - https://binarysearch.io/
       - https://www.pluralsight.com/
