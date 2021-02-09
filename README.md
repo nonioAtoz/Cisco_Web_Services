@@ -177,11 +177,6 @@ A series of webservices that allow clients to interact with cisco network device
        
        
               ├── config.py
-              ├── deployCentos
-              │   ├── history_commands
-              │   ├── install.netowrkautomate
-              │   ├── nginx.conf
-              │   └── nginx.conf_OLD
               ├── LOGS
               │   ├── NetworkAutomate.log
               │   └── NETWORKAUTOMATE_JSONLOG.json
