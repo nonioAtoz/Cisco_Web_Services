@@ -334,9 +334,10 @@ A series of webservices that allow clients to interact with cisco network device
   
   
   
-  ## A big THANK YOU!,  to the Python and Networking Community
-
-      - https://isec.pt
+  ## xd)
+  
+      - https://Isec.pt
+      - https://Uc.pt
       - https://prettyprinted.com
       - https://blog.miguelgrinberg.com/index
       - https://www.python.org/
